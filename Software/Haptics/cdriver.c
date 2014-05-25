@@ -4,6 +4,7 @@
 
  #include "cdriver.h"
  #include "tdriver.h"
+ #include "leds.h"
 
 int compass_enable;
 int heading;
@@ -13,6 +14,7 @@ unsigned long c_stack[C_STACK_SIZE];
 void c_get_heading();
 
 void launch_c(){
+    //blink(2, HEARTBEAT);
     _coginit_C(&c_get_heading, (unsigned long *)&c_stack + C_STACK_SIZE);
 }
 
@@ -32,8 +34,10 @@ void c_get_heading() {
     while (1) {
 
         if (compass_enable){
+
             // Get raw data
             read_accel_data(data_handle, spi_handle);
+
             read_mag_data(data_handle, spi_handle);
 
             // Get the compass heading

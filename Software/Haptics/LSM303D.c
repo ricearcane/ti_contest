@@ -52,7 +52,7 @@ static void send_csv(int first, int second, int third) {
     t_char(',');
     t_nl();
   */
-    t_aprintf("%d,%d,%d/n", first, second, third);
+    t_aprintf("%d,%d,%d\r", first, second, third);
 
 }
 

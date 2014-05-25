@@ -10,7 +10,7 @@
 #include "leds.h"
 
 unsigned short loc_channels[12];
-int c_heading;
+//int heading;
 int data_changed;
 
 void self_test(){
@@ -21,7 +21,7 @@ void self_test(){
 void merge(){
     int i;
     if(compass_enable){
-        if(c_heading > -15 && c_heading < 15){ //aimed north
+        if(heading < 15 || (heading < 360 && heading > 345)){ //aimed north
             for(i = 0; i < 12; i++){
                 if(i == 5){
                     loc_channels[i] = 32768; //turn channel 5 on at half intensity
@@ -71,7 +71,7 @@ int main(int argc, char *argv[])
             //compass_enable = 0;
             break;
             case 1:
-            compass_enable = 0;
+            compass_enable = 1;
             stop_cnt = _cnt() + MS_TO_CNT(COMPASS_TIMEOUT);
             buttonstates = 0;
             break;
@@ -84,8 +84,8 @@ int main(int argc, char *argv[])
         led1_state(compass_enable);
         if(compass_enable){
 
-            c_heading = heading;
-            //t_aprintf("Compass enabled. Current heading: %d\r", 0);
+            //c_heading = heading;
+            t_aprintf("Compass enabled. Current heading: %d\r", heading);
             //_waitcnt(_cnt()+40000000);
             if(_cnt() >= stop_cnt)
                 compass_enable = 0;
