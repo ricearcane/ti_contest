@@ -1,0 +1,6 @@
+Page 1 -- Power management
+Page 2 -- Motor driver
+Page 3 -- Bluetooth module
+Page 4 -- Test points, miscellaneous headers and switches
+Page 5 -- Propeller 
+Page 6 -- USB to serial
