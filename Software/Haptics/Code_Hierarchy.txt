@@ -1,0 +1,23 @@
+0. Helper Libraries
+	sem.h
+	|->	sem.c
+	config.h
+	|->	catalina_cog.h
+1. Core code
+	main.c
+	|-> mdriver.h					provides motor driver loop
+	|	|-> mdriver.c				
+	|	|	|->	TLC59711.h			provides TLC59711 driver
+	|	|	|	|->	TLC59711.c
+	|	|-> sem.h					provides semaphores
+	|	|-> config.h
+	|->	tdriver.h					provides terminal I/O, USB/BT handoff, etc.
+	|	|-> tdriver.c
+	|-> bdriver.h					provides button event polling.
+	|	|-> bdriver.c
+	|->	cdriver.h					provides compass functionality
+		|-> cdriver.c
+			|-> LSM303D.h			provides LSM303D driver
+				|-> LSM303D.c
+					|-> comms.h		provides communication protocol for compass
+						|-> comms.c
